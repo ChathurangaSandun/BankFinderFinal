@@ -6,12 +6,15 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
@@ -24,11 +27,14 @@ import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
+import com.mikepenz.materialdrawer.model.interfaces.Nameable;
 
 public class HomeActivity extends AppCompatActivity {
     private static final int PROFILE_SETTING = 1;
     AccountHeader headerDrawer;
     Drawer drawer;
+
+    final String LOG_TAG = "HomeActivity";
 
     String [] allBanksnames = {
             "Amana Bank PLC",
@@ -76,6 +82,12 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        //defualt fragment
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        HomeFragment homeFragment = new HomeFragment();
+        fragmentTransaction.replace(R.id.container, homeFragment);
+        fragmentTransaction.commit();
+
 
 
         //create navigation drawer
@@ -121,7 +133,7 @@ public class HomeActivity extends AppCompatActivity {
         PrimaryDrawerItem item1 = new PrimaryDrawerItem().withName("Home").withDescription("Brief Detail about Bank").withDescriptionTextColorRes(R.color.discriptionGray).withIcon(getResources().getDrawable(R.drawable.ic_home));
         PrimaryDrawerItem item2 = new PrimaryDrawerItem().withName("Branch Finder").withDescription("Branch List").withDescriptionTextColorRes(R.color.discriptionGray).withIcon(getResources().getDrawable(R.drawable.ic_bank));
         PrimaryDrawerItem item3 = new PrimaryDrawerItem().withName("ATM Finder").withDescription("ATM List").withDescriptionTextColorRes(R.color.discriptionGray).withDescriptionTextColorRes(R.color.discriptionGray).withIcon(getResources().getDrawable(R.drawable.ic_atm));
-        PrimaryDrawerItem item4 = new PrimaryDrawerItem().withName("ළඟම ATM සහ ශාඛාව").withDescription("View nearest ATM & Branch").withDescriptionTextColorRes(R.color.discriptionGray).withIcon(getResources().getDrawable(R.drawable.ic_map));
+        PrimaryDrawerItem item4 = new PrimaryDrawerItem().withName("Nearest ATM and Branch").withDescription("View nearest ATM & Branch").withDescriptionTextColorRes(R.color.discriptionGray).withIcon(getResources().getDrawable(R.drawable.ic_map));
 
 
 
@@ -143,6 +155,36 @@ public class HomeActivity extends AppCompatActivity {
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+
+                        if (drawerItem != null) {
+                            String selectedItem = ((Nameable) drawerItem).getName().getText(HomeActivity.this);
+                            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                            if ("Home".equals(selectedItem)) {
+                                Log.d(LOG_TAG, "Home");
+                                HomeFragment homeFragment = new HomeFragment();
+                                fragmentTransaction.replace(R.id.container, homeFragment);
+                            }if ("Branch Finder".equals(selectedItem)){
+                                Log.d(LOG_TAG, "Branch Finder");
+                                HomeFragment homeFragment = new HomeFragment();
+                                fragmentTransaction.replace(R.id.container, homeFragment);
+                            }else if ("ATM Finder".equals(selectedItem)) {
+                                Log.d(LOG_TAG, "ATM Finder");
+                                HomeFragment homeFragment = new HomeFragment();
+                                fragmentTransaction.replace(R.id.container, homeFragment);
+                            } else if ("Nearest ATM and Branch".equals(selectedItem)) {
+                                Log.d(LOG_TAG, "Nearest ATM and Branch");
+                                HomeFragment homeFragment = new HomeFragment();
+                                fragmentTransaction.replace(R.id.container, homeFragment);
+                            }else if("Check Update".equals(selectedItem)){
+                                Log.d(LOG_TAG, "Check Update");
+                            }else if("Developer".equals(selectedItem)){
+                                Log.d(LOG_TAG, "Developer");
+                            }else if("GitHub".equals(selectedItem)){
+                                Log.d(LOG_TAG, "GitHub");
+                            }
+                            fragmentTransaction.commit();
+
+                        }
 
 
                         return false;
