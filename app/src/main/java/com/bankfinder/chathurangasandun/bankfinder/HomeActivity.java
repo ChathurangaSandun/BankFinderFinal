@@ -173,8 +173,8 @@ public class HomeActivity extends AppCompatActivity {
                                 fragmentTransaction.replace(R.id.container, homeFragment);
                             } else if ("Nearest ATM and Branch".equals(selectedItem)) {
                                 Log.d(LOG_TAG, "Nearest ATM and Branch");
-                                HomeFragment homeFragment = new HomeFragment();
-                                fragmentTransaction.replace(R.id.container, homeFragment);
+                                MapFragment mapFragment = new MapFragment();
+                                fragmentTransaction.replace(R.id.container, mapFragment);
                             }else if("Check Update".equals(selectedItem)){
                                 Log.d(LOG_TAG, "Check Update");
                             }else if("Developer".equals(selectedItem)){
