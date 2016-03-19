@@ -80,10 +80,6 @@ public class HomeActivity extends AppCompatActivity {
 
         //create navigation drawer
 
-
-
-
-
          headerDrawer = new AccountHeaderBuilder()
                 .withActivity(this)
                 .withHeaderBackground(R.drawable.header)
@@ -122,8 +118,10 @@ public class HomeActivity extends AppCompatActivity {
                  .build();
 
         //if you want to update the items at a later time it is recommended to keep it in a variable
-        PrimaryDrawerItem item1 = new PrimaryDrawerItem().withName("Home");
-        PrimaryDrawerItem item2 = new PrimaryDrawerItem().withName("Map");
+        PrimaryDrawerItem item1 = new PrimaryDrawerItem().withName("Home").withDescription("Brief Detail about Bank").withDescriptionTextColorRes(R.color.discriptionGray).withIcon(getResources().getDrawable(R.drawable.ic_home));
+        PrimaryDrawerItem item2 = new PrimaryDrawerItem().withName("Branch Finder").withDescription("Branch List").withDescriptionTextColorRes(R.color.discriptionGray).withIcon(getResources().getDrawable(R.drawable.ic_bank));
+        PrimaryDrawerItem item3 = new PrimaryDrawerItem().withName("ATM Finder").withDescription("ATM List").withDescriptionTextColorRes(R.color.discriptionGray).withDescriptionTextColorRes(R.color.discriptionGray).withIcon(getResources().getDrawable(R.drawable.ic_atm));
+        PrimaryDrawerItem item4 = new PrimaryDrawerItem().withName("ළඟම ATM සහ ශාඛාව").withDescription("View nearest ATM & Branch").withDescriptionTextColorRes(R.color.discriptionGray).withIcon(getResources().getDrawable(R.drawable.ic_map));
 
 
 
@@ -137,13 +135,9 @@ public class HomeActivity extends AppCompatActivity {
 
                 .addDrawerItems(
                         item1,
-                        new DividerDrawerItem(),
                         item2,
-                        item2,
-                        item2, item2, item2, item2, item2, item2, item2, item2, item2, item2, item2, item2, item2,
-
-
-                        new SecondaryDrawerItem().withName("ddddd")
+                        item3,
+                        item4
                 )
 
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
@@ -157,24 +151,14 @@ public class HomeActivity extends AppCompatActivity {
                 .build();
 
 
+        drawer.addStickyFooterItem(new PrimaryDrawerItem().withName("Check Update").withIcon(getResources().getDrawable(R.drawable.ic_update)));
 
+        drawer.addStickyFooterItem(new DividerDrawerItem());
+        drawer.addStickyFooterItem(new PrimaryDrawerItem().withName("Developer").withIcon(getResources().getDrawable(R.drawable.developer)));
 
-//to update only the name, badge, icon you can also use one of the quick methods
-        //result.updateName(1, "name");
+        drawer.addStickyFooterItem(new DividerDrawerItem());
+        drawer.addStickyFooterItem(new PrimaryDrawerItem().withName("GitHub").withIcon(getResources().getDrawable(R.drawable.ic_github)));
 
-//the result object also allows you to add new items, remove items, add footer, sticky footer, ..
-        drawer.addItem(new DividerDrawerItem());
-        drawer.addStickyFooterItem(new PrimaryDrawerItem().withName("StickyFooterItem"));
-
-//remove items with an identifier
-        drawer.removeItem(2);
-
-//open / close the drawer
-        drawer.openDrawer();
-        drawer.closeDrawer();
-
-//get the reference to the `DrawerLayout` itself
-        drawer.getDrawerLayout();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         drawer.getActionBarDrawerToggle().setDrawerIndicatorEnabled(true);
