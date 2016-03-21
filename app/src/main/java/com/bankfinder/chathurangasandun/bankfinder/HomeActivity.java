@@ -62,8 +62,6 @@ public class HomeActivity extends AppCompatActivity {
             "State Bank of India",
             "HSBC",
             "Union Bank of Colombo PLC"
-
-
     };
 
     @Override
@@ -73,14 +71,7 @@ public class HomeActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
 
         //defualt fragment
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -117,8 +108,6 @@ public class HomeActivity extends AppCompatActivity {
                         new ProfileDrawerItem().withName(allBanksnames[18]).withNameShown(true).withEmail("").withIcon(getResources().getDrawable(R.drawable.amana)),
                         new ProfileDrawerItem().withName(allBanksnames[19]).withNameShown(true).withEmail("").withIcon(getResources().getDrawable(R.drawable.amana)),
                         new ProfileDrawerItem().withName(allBanksnames[20]).withNameShown(true).withEmail("").withIcon(getResources().getDrawable(R.drawable.amana))
-
-
                 )
                 .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
                     @Override
@@ -134,6 +123,7 @@ public class HomeActivity extends AppCompatActivity {
         PrimaryDrawerItem item2 = new PrimaryDrawerItem().withName("Branch Finder").withDescription("Branch List").withDescriptionTextColorRes(R.color.discriptionGray).withIcon(getResources().getDrawable(R.drawable.ic_bank));
         PrimaryDrawerItem item3 = new PrimaryDrawerItem().withName("ATM Finder").withDescription("ATM List").withDescriptionTextColorRes(R.color.discriptionGray).withDescriptionTextColorRes(R.color.discriptionGray).withIcon(getResources().getDrawable(R.drawable.ic_atm));
         PrimaryDrawerItem item4 = new PrimaryDrawerItem().withName("Nearest ATM and Branch").withDescription("View nearest ATM & Branch").withDescriptionTextColorRes(R.color.discriptionGray).withIcon(getResources().getDrawable(R.drawable.ic_map));
+        PrimaryDrawerItem item5 = new PrimaryDrawerItem().withName("Official Web Site").withDescription("View their official site").withDescriptionTextColorRes(R.color.discriptionGray).withIcon(getResources().getDrawable(R.drawable.ic_webview));
 
 
 
@@ -149,7 +139,8 @@ public class HomeActivity extends AppCompatActivity {
                         item1,
                         item2,
                         item3,
-                        item4
+                        item4,
+                        item5
                 )
 
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
@@ -181,12 +172,11 @@ public class HomeActivity extends AppCompatActivity {
                                 Log.d(LOG_TAG, "Developer");
                             }else if("GitHub".equals(selectedItem)){
                                 Log.d(LOG_TAG, "GitHub");
+                            }else if("Official Web Site".equals(selectedItem)){
+                                Log.d(LOG_TAG, "Official Web Site");
                             }
                             fragmentTransaction.commit();
-
                         }
-
-
                         return false;
                     }
                 })
@@ -205,14 +195,7 @@ public class HomeActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         drawer.getActionBarDrawerToggle().setDrawerIndicatorEnabled(true);
 
-
-
-
-
-
-
     }
-
 
 
     @Override
