@@ -31,4 +31,7 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.0.0'
     compile 'com.sothree.slidinguppanel:library:3.0.0'
     compile 'com.google.android.gms:play-services:8.4.0'
+
+    compile 'com.mcxiaoke.volley:library-aar:1.0.0'
 }
+
