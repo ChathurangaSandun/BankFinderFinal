@@ -25,7 +25,7 @@ public class SpashActivity extends AppCompatActivity {
      * user interaction before hiding the system UI.
      */
     private static final int AUTO_HIDE_DELAY_MILLIS = 3000;
-    private static int SPLASH_TIME_OUT = 3000;
+    private static int SPLASH_TIME_OUT = 5000;
 
     /**
      * Some older devices needs a small delay between UI widget updates
@@ -56,6 +56,7 @@ public class SpashActivity extends AppCompatActivity {
     private final Runnable mShowPart2Runnable = new Runnable() {
         @Override
         public void run() {
+            hide();
             // Delayed display of UI elements
             ActionBar actionBar = getSupportActionBar();
             if (actionBar != null) {

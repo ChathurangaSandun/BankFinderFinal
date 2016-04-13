@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
@@ -36,7 +37,7 @@ public class HomeActivity extends AppCompatActivity {
 
     final String LOG_TAG = "HomeActivity";
 
-    String [] allBanksnames = {
+    final static  String [] allBanksnames = {
             "Amana Bank PLC",
             "Axis Bank Ltd",
             "Bank of Ceylon",
@@ -74,6 +75,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
         //defualt fragment
+
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         HomeFragment homeFragment = new HomeFragment();
         fragmentTransaction.replace(R.id.container, homeFragment);
@@ -112,6 +114,15 @@ public class HomeActivity extends AppCompatActivity {
                 .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
                     @Override
                     public boolean onProfileChanged(View view, IProfile profile, boolean currentProfile) {
+
+                        Log.d("profile", profile.getName().toString());
+                        String profileName = profile.getName().toString();
+
+                        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                        HomeFragment homeFragment = new HomeFragment();
+                        fragmentTransaction.replace(R.id.container, homeFragment);
+                        fragmentTransaction.commit();
+
 
                         return false;
                     }
