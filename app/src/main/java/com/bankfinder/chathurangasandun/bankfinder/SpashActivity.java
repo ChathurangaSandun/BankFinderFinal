@@ -9,6 +9,8 @@ import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.bankfinder.chathurangasandun.bankfinder.model.Branches;
+
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
@@ -105,6 +107,24 @@ public class SpashActivity extends AppCompatActivity {
                 hide();
             }
         });
+
+
+
+
+        //create database
+        DatabaseOpenHelper db =new DatabaseOpenHelper(this);
+        db.addBranch(new Branches(1,"Amana","horana",1.25,5.25,"horana","0718256773","0800","1500","0900","1500"));
+
+
+
+
+
+
+
+
+
+
+
 
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
