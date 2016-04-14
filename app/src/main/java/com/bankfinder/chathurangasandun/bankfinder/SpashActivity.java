@@ -2,14 +2,29 @@ package com.bankfinder.chathurangasandun.bankfinder;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
 import com.bankfinder.chathurangasandun.bankfinder.model.Branches;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -21,6 +36,7 @@ public class SpashActivity extends AppCompatActivity {
      * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
      */
     private static final boolean AUTO_HIDE = true;
+    private final String SERVER_URL = "http://192.168.56.1/bank/getBankList.php";
 
     /**
      * If {@link #AUTO_HIDE} is set, the number of milliseconds to wait after
@@ -109,11 +125,31 @@ public class SpashActivity extends AppCompatActivity {
         });
 
 
+        SharedPreferences databasecreate = getSharedPreferences("databasecreate",MODE_PRIVATE);
+        final String DBVERSION = "dbversion";
+        int currentVersion = databasecreate.getInt(DBVERSION, 0);
+        Log.d("dbversions", String.valueOf(currentVersion));
+        SharedPreferences.Editor edit = databasecreate.edit();
+
+        //TODO : remove comment
+       /* if(currentVersion == 0){
+            accessServer();
+        }*/
+
+        accessServer();
+
+        //edit.putInt(DBVERSION,(currentVersion+1));
+        //edit.commit();
+
+
+
 
 
         //create database
         DatabaseOpenHelper db =new DatabaseOpenHelper(this);
-        db.addBranch(new Branches(1,"Amana","horana",1.25,5.25,"horana","0718256773","0800","1500","0900","1500"));
+        db.addBranch(new Branches(1, "Amana", "horana", 1.25, 5.25, "horana", "0718256773", "0800", "1500", "0900", "1500"));
+
+
 
 
 
@@ -165,6 +201,43 @@ public class SpashActivity extends AppCompatActivity {
 
 
 
+    }
+
+    private void accessServer() {
+        //getData from server
+
+        ArrayList<Branches> branchesArrayList  = new ArrayList<>();
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(SERVER_URL,
+                new Response.Listener<JSONArray>() {
+
+                    @Override
+                    public void onResponse(JSONArray response) {
+
+                        for(int i=0;i<response.length();i++){
+                            try {
+                                JSONObject jsonObject = response.getJSONObject(i);
+                                int id = jsonObject.getInt("id");
+                                Log.d("serverjsonid", String.valueOf(id));
+
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
+                Log.d("serverjsonid", error.toString());
+            }
+        });
+
+        queue.add(jsonArrayRequest);
     }
 
     @Override
