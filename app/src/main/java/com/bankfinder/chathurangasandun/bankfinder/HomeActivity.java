@@ -77,7 +77,7 @@ public class HomeActivity extends AppCompatActivity {
         //defualt fragment
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        HomeFragment homeFragment = new HomeFragment();
+        BranchFragment homeFragment = new BranchFragment();
         fragmentTransaction.replace(R.id.container, homeFragment);
         fragmentTransaction.commit();
 
@@ -167,8 +167,8 @@ public class HomeActivity extends AppCompatActivity {
                                 fragmentTransaction.replace(R.id.container, homeFragment);
                             }if ("Branch Finder".equals(selectedItem)){
                                 Log.d(LOG_TAG, "Branch Finder");
-                                HomeFragment homeFragment = new HomeFragment();
-                                fragmentTransaction.replace(R.id.container, homeFragment);
+                                BranchFragment branchFragment = new BranchFragment();
+                                fragmentTransaction.replace(R.id.container, branchFragment);
                             }else if ("ATM Finder".equals(selectedItem)) {
                                 Log.d(LOG_TAG, "ATM Finder");
                                 HomeFragment homeFragment = new HomeFragment();

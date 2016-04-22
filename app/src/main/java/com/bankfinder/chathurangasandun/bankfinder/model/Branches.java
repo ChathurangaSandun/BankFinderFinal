@@ -32,6 +32,9 @@ public class Branches {
         this.satClose = satClose;
     }
 
+    public Branches() {
+    }
+
     public int getId() {
         return id;
     }

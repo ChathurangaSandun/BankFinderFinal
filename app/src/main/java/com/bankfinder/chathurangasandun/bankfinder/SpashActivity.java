@@ -114,6 +114,8 @@ public class SpashActivity extends AppCompatActivity {
         mVisible = true;
         mControlsView = findViewById(R.id.fullscreen_content_controls);
         mContentView = findViewById(R.id.fullscreen_content);
+        //create database
+        DatabaseOpenHelper db =new DatabaseOpenHelper(this);
 
 
         // Set up the user interaction to manually show or hide the system UI.
@@ -136,7 +138,13 @@ public class SpashActivity extends AppCompatActivity {
             accessServer();
         }*/
 
-        accessServer();
+        db.truncateTable("branches");
+
+        ArrayList<Branches> branchesArrayList = accessServer();
+        for (Branches b: branchesArrayList) {
+            db.addBranch(b);
+
+        }
 
         //edit.putInt(DBVERSION,(currentVersion+1));
         //edit.commit();
@@ -145,9 +153,13 @@ public class SpashActivity extends AppCompatActivity {
 
 
 
-        //create database
-        DatabaseOpenHelper db =new DatabaseOpenHelper(this);
+
         db.addBranch(new Branches(1, "Amana", "horana", 1.25, 5.25, "horana", "0718256773", "0800", "1500", "0900", "1500"));
+        db.addBranch(new Branches(2, "Amana", "horana", 3.25, 5.25, "horana", "0718256773", "0800", "1500", "0900", "1500"));
+        db.addBranch(new Branches(3, "Amana", "horana", 5.25, 5.25, "horana", "0718256773", "0800", "1500", "0900", "1500"));
+        db.addBranch(new Branches(4, "Amana", "horana", 9.25, 5.25, "horana", "0718256773", "0800", "1500", "0900", "1500"));
+        db.addBranch(new Branches(5, "Amana", "horana", 7.25, 5.25, "horana", "0718256773", "0800", "1500", "0900", "1500"));
+        db.addBranch(new Branches(6, "Amana", "horana", 6.25, 5.25, "horana", "0718256773", "0800", "1500", "0900", "1500"));
 
 
 
@@ -203,10 +215,10 @@ public class SpashActivity extends AppCompatActivity {
 
     }
 
-    private void accessServer() {
+    private ArrayList<Branches> accessServer() {
         //getData from server
 
-        ArrayList<Branches> branchesArrayList  = new ArrayList<>();
+        final ArrayList<Branches> branchesArrayList  = new ArrayList<>();
 
         RequestQueue queue = Volley.newRequestQueue(this);
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(SERVER_URL,
@@ -219,7 +231,20 @@ public class SpashActivity extends AppCompatActivity {
                             try {
                                 JSONObject jsonObject = response.getJSONObject(i);
                                 int id = jsonObject.getInt("id");
-                                Log.d("serverjsonid", String.valueOf(id));
+                                //Log.d("serverjsonid",id+"" );
+                                String bank = jsonObject.getString("bank");
+                                String name = jsonObject.getString("name");
+                                double latitude = jsonObject.getDouble("latitude");
+                                double longtitude = jsonObject.getDouble("longtitude");
+                                String address = jsonObject.getString("address");
+                                String tp = jsonObject.getString("tp");
+                                String weekopen = jsonObject.getString("weekopen");
+                                String weekclose = jsonObject.getString("weekclose");
+                                String satopen = jsonObject.getString("satopen");
+                                String satclose = jsonObject.getString("satclose");
+
+
+                                branchesArrayList.add(new Branches(id,bank,name,latitude,longtitude,address,tp,weekopen,weekclose,satopen,satclose));
 
 
                             } catch (JSONException e) {
@@ -233,11 +258,13 @@ public class SpashActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
-                Log.d("serverjsonid", error.toString());
+                Log.d("serverjsonid",error.getMessage() );
             }
         });
 
         queue.add(jsonArrayRequest);
+
+        return branchesArrayList;
     }
 
     @Override

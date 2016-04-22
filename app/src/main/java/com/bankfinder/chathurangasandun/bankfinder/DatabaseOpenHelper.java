@@ -2,10 +2,15 @@ package com.bankfinder.chathurangasandun.bankfinder;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.bankfinder.chathurangasandun.bankfinder.model.Branches;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Chathuranga Sandun on 4/14/2016.
@@ -82,8 +87,53 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
         values.put(this.KEY_SATCLOSE,branches.getSatClose() );
 
 
+
+
+
+
         // Inserting Row
-        db.insert(this.TABLE_BRANCH, null, values);
+        long insert = db.insert(this.TABLE_BRANCH, null, values);
+        Log.d("databaseinsert", String.valueOf(insert));
         db.close(); // Closing database connection
     }
+
+    public void truncateTable(String tableName){
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.execSQL("DELETE FROM " + tableName);
+    }
+
+    public ArrayList<Branches> getAllBranches() {
+        ArrayList<Branches> contactList = new ArrayList<Branches>();
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + TABLE_BRANCH;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                Branches b = new Branches();
+                // Adding contact to list
+                b.setId(cursor.getInt(0));
+                b.setBank(cursor.getString(1));
+                b.setName(cursor.getString(2));
+                b.setLatitude(cursor.getDouble(3));
+                b.setLongtitude(cursor.getDouble(4));
+                b.setAddress(cursor.getString(5));
+                b.setTp(cursor.getString(6));
+                b.setWeekOpen(cursor.getString(7));
+                b.setWeekClose(cursor.getString(8));
+                b.setSatOpen(cursor.getString(9));
+                b.setSatClose(cursor.getString(10));
+
+
+                contactList.add(b);
+            } while (cursor.moveToNext());
+        }
+
+        // return contact list
+        return contactList;
+    }
+
 }
