@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">BankFinder</string>
     <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_maps">Map</string>
+
+    <string name="title_activity_spash">SpashActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">BANK \n FINDER</string>
 </resources>

@@ -4,14 +4,18 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
@@ -24,13 +28,16 @@ import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
+import com.mikepenz.materialdrawer.model.interfaces.Nameable;
 
 public class HomeActivity extends AppCompatActivity {
     private static final int PROFILE_SETTING = 1;
     AccountHeader headerDrawer;
     Drawer drawer;
 
-    String [] allBanksnames = {
+    final String LOG_TAG = "HomeActivity";
+
+    final static  String [] allBanksnames = {
             "Amana Bank PLC",
             "Axis Bank Ltd",
             "Bank of Ceylon",
@@ -56,8 +63,6 @@ public class HomeActivity extends AppCompatActivity {
             "State Bank of India",
             "HSBC",
             "Union Bank of Colombo PLC"
-
-
     };
 
     @Override
@@ -67,14 +72,14 @@ public class HomeActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
+
+        //defualt fragment
+
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        BranchFragment homeFragment = new BranchFragment();
+        fragmentTransaction.replace(R.id.container, homeFragment);
+        fragmentTransaction.commit();
 
 
 
@@ -105,12 +110,19 @@ public class HomeActivity extends AppCompatActivity {
                         new ProfileDrawerItem().withName(allBanksnames[18]).withNameShown(true).withEmail("").withIcon(getResources().getDrawable(R.drawable.amana)),
                         new ProfileDrawerItem().withName(allBanksnames[19]).withNameShown(true).withEmail("").withIcon(getResources().getDrawable(R.drawable.amana)),
                         new ProfileDrawerItem().withName(allBanksnames[20]).withNameShown(true).withEmail("").withIcon(getResources().getDrawable(R.drawable.amana))
-
-
                 )
                 .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
                     @Override
                     public boolean onProfileChanged(View view, IProfile profile, boolean currentProfile) {
+
+                        Log.d("profile", profile.getName().toString());
+                        String profileName = profile.getName().toString();
+
+                        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                        HomeFragment homeFragment = new HomeFragment();
+                        fragmentTransaction.replace(R.id.container, homeFragment);
+                        fragmentTransaction.commit();
+
 
                         return false;
                     }
@@ -121,7 +133,8 @@ public class HomeActivity extends AppCompatActivity {
         PrimaryDrawerItem item1 = new PrimaryDrawerItem().withName("Home").withDescription("Brief Detail about Bank").withDescriptionTextColorRes(R.color.discriptionGray).withIcon(getResources().getDrawable(R.drawable.ic_home));
         PrimaryDrawerItem item2 = new PrimaryDrawerItem().withName("Branch Finder").withDescription("Branch List").withDescriptionTextColorRes(R.color.discriptionGray).withIcon(getResources().getDrawable(R.drawable.ic_bank));
         PrimaryDrawerItem item3 = new PrimaryDrawerItem().withName("ATM Finder").withDescription("ATM List").withDescriptionTextColorRes(R.color.discriptionGray).withDescriptionTextColorRes(R.color.discriptionGray).withIcon(getResources().getDrawable(R.drawable.ic_atm));
-        PrimaryDrawerItem item4 = new PrimaryDrawerItem().withName("ළඟම ATM සහ ශාඛාව").withDescription("View nearest ATM & Branch").withDescriptionTextColorRes(R.color.discriptionGray).withIcon(getResources().getDrawable(R.drawable.ic_map));
+        PrimaryDrawerItem item4 = new PrimaryDrawerItem().withName("Nearest ATM and Branch").withDescription("View nearest ATM & Branch").withDescriptionTextColorRes(R.color.discriptionGray).withIcon(getResources().getDrawable(R.drawable.ic_map));
+        PrimaryDrawerItem item5 = new PrimaryDrawerItem().withName("Official Web Site").withDescription("View their official site").withDescriptionTextColorRes(R.color.discriptionGray).withIcon(getResources().getDrawable(R.drawable.ic_webview));
 
 
 
@@ -137,14 +150,44 @@ public class HomeActivity extends AppCompatActivity {
                         item1,
                         item2,
                         item3,
-                        item4
+                        item4,
+                        item5
                 )
 
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
 
-
+                        if (drawerItem != null) {
+                            String selectedItem = ((Nameable) drawerItem).getName().getText(HomeActivity.this);
+                            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                            if ("Home".equals(selectedItem)) {
+                                Log.d(LOG_TAG, "Home");
+                                HomeFragment homeFragment = new HomeFragment();
+                                fragmentTransaction.replace(R.id.container, homeFragment);
+                            }if ("Branch Finder".equals(selectedItem)){
+                                Log.d(LOG_TAG, "Branch Finder");
+                                BranchFragment branchFragment = new BranchFragment();
+                                fragmentTransaction.replace(R.id.container, branchFragment);
+                            }else if ("ATM Finder".equals(selectedItem)) {
+                                Log.d(LOG_TAG, "ATM Finder");
+                                HomeFragment homeFragment = new HomeFragment();
+                                fragmentTransaction.replace(R.id.container, homeFragment);
+                            } else if ("Nearest ATM and Branch".equals(selectedItem)) {
+                                Log.d(LOG_TAG, "Nearest ATM and Branch");
+                                MapFragment mapFragment = new MapFragment();
+                                fragmentTransaction.replace(R.id.container, mapFragment);
+                            }else if("Check Update".equals(selectedItem)){
+                                Log.d(LOG_TAG, "Check Update");
+                            }else if("Developer".equals(selectedItem)){
+                                Log.d(LOG_TAG, "Developer");
+                            }else if("GitHub".equals(selectedItem)){
+                                Log.d(LOG_TAG, "GitHub");
+                            }else if("Official Web Site".equals(selectedItem)){
+                                Log.d(LOG_TAG, "Official Web Site");
+                            }
+                            fragmentTransaction.commit();
+                        }
                         return false;
                     }
                 })
@@ -163,14 +206,7 @@ public class HomeActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         drawer.getActionBarDrawerToggle().setDrawerIndicatorEnabled(true);
 
-
-
-
-
-
-
     }
-
 
 
     @Override

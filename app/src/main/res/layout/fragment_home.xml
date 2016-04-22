@@ -1,0 +1,46 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.bankfinder.chathurangasandun.bankfinder.HomeFragment"
+    android:gravity="start|fill_vertical"
+    android:background="@color/homebackgroundcolor">
+
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="175dp"
+        android:id="@+id/ivLogo"
+        android:paddingTop="20dp"
+        android:foregroundGravity="top|center" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Amana Bank"
+        android:id="@+id/tvMainbankName"
+        android:textSize="40dp"
+        android:textAlignment="center"
+        android:layout_below="@+id/ivLogo"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/scrollView"
+        android:layout_below="@+id/tvMainbankName"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
