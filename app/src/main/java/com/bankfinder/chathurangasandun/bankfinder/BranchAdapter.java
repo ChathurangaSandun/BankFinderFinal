@@ -54,16 +54,22 @@ public class BranchAdapter extends RecyclerView.Adapter<BranchAdapter.BranchView
 
     @Override
     public void onBindViewHolder(BranchViewholder holder, int position) {
-        Branches branch = branchesList.get(position);
+        Branches branch = this.branchesList.get(position);
         holder.tvName.setText(branch.getName());
         holder.tvAddress.setText(branch.getAddress());
     }
 
     @Override
     public int getItemCount() {
-        return branchesList.size();
+        return this.branchesList.size();
     }
 
+
+    public void setFilter(List<Branches> bList) {
+        this.branchesList = new ArrayList<>();
+        this.branchesList.addAll(bList);
+        notifyDataSetChanged();
+    }
 
 }
 

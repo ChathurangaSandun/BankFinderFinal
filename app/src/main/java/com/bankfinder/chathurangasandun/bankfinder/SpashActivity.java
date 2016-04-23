@@ -155,11 +155,12 @@ public class SpashActivity extends AppCompatActivity {
 
 
         db.addBranch(new Branches(1, "Amana", "horana", 1.25, 5.25, "horana", "0718256773", "0800", "1500", "0900", "1500"));
-        db.addBranch(new Branches(2, "Amana", "horana", 3.25, 5.25, "horana", "0718256773", "0800", "1500", "0900", "1500"));
-        db.addBranch(new Branches(3, "Amana", "horana", 5.25, 5.25, "horana", "0718256773", "0800", "1500", "0900", "1500"));
-        db.addBranch(new Branches(4, "Amana", "horana", 9.25, 5.25, "horana", "0718256773", "0800", "1500", "0900", "1500"));
-        db.addBranch(new Branches(5, "Amana", "horana", 7.25, 5.25, "horana", "0718256773", "0800", "1500", "0900", "1500"));
-        db.addBranch(new Branches(6, "Amana", "horana", 6.25, 5.25, "horana", "0718256773", "0800", "1500", "0900", "1500"));
+        db.addBranch(new Branches(2, "Amana", "colombo", 3.25, 5.25, "horana", "0718256773", "0800", "1500", "0900", "1500"));
+        db.addBranch(new Branches(3, "Amana", "piliyandala", 5.25, 5.25, "horana", "0718256773", "0800", "1500", "0900", "1500"));
+        db.addBranch(new Branches(4, "Amana", "panadura", 9.25, 5.25, "horana", "0718256773", "0800", "1500", "0900", "1500"));
+        db.addBranch(new Branches(5, "Amana", "pilimathalawa", 7.25, 5.25, "horana", "0718256773", "0800", "1500", "0900", "1500"));
+        db.addBranch(new Branches(6, "Amana", "bandaragama", 6.25, 5.25, "horana", "0718256773", "0800", "1500", "0900", "1500"));
+        db.addBranch(new Branches(7, "Amana", "batuwita", 6.25, 5.25, "horana", "0718256773", "0800", "1500", "0900", "1500"));
 
 
 

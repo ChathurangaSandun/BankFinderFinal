@@ -34,7 +34,7 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragmen
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        Drawable myDrawable = getResources().getDrawable(R.drawable.amana);
+        Drawable myDrawable = getResources().getDrawable(R.drawable.ic_bank);
         Bitmap myLogo = ((BitmapDrawable) myDrawable).getBitmap();
 
         ImageView imageView = (ImageView)view.findViewById(R.id.ivLogo);

@@ -5,12 +5,33 @@
     tools:context="com.bankfinder.chathurangasandun.bankfinder.BranchFragment">
 
     <!-- TODO: Update blank fragment layout -->
-
+    <SearchView
+        android:id="@+id/search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:textSize="16sp"
+        android:hint="Search here"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_branch"
         android:scrollbars="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/search"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvNoBranches"
+        android:layout_below="@+id/recycler_view_branch"
+        android:layout_centerHorizontal="true" />
+
 
 </RelativeLayout>

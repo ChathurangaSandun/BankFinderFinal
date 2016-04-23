@@ -1,31 +1,22 @@
 package com.bankfinder.chathurangasandun.bankfinder;
 
-import android.content.Intent;
-import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
+import com.bankfinder.chathurangasandun.bankfinder.model.Bank;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
-import com.mikepenz.materialdrawer.holder.BadgeStyle;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
-import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import com.mikepenz.materialdrawer.model.interfaces.Nameable;
@@ -37,33 +28,7 @@ public class HomeActivity extends AppCompatActivity {
 
     final String LOG_TAG = "HomeActivity";
 
-    final static  String [] allBanksnames = {
-            "Amana Bank PLC",
-            "Axis Bank Ltd",
-            "Bank of Ceylon",
-            "Cargills Bank Ltd",
-            "Citibank",
-            "Commercial Bank of Ceylon PLC",
-            "Deutsche Bank AG",
-            "DFCC Bank PLC",
-            "Habib Bank Ltd",
-            "Hatton National Bank PLC",
-            "ICICI Bank Ltd.",
-            "Indian Bank",
-            "Indian Overseas Bank",
-            "MCB Bank Ltd",
-            "National Development Bank PLC",
-            "Nations Trust Bank PLC",
-            "Pan Asia Banking Corporation PLC",
-            "People's Bank",
-            "Public Bank Berhad",
-            "Sampath Bank PLC",
-            "Seylan Bank PLC",
-            "Standard Chartered Bank",
-            "State Bank of India",
-            "HSBC",
-            "Union Bank of Colombo PLC"
-    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,27 +54,27 @@ public class HomeActivity extends AppCompatActivity {
                 .withActivity(this)
                 .withHeaderBackground(R.drawable.header)
                 .addProfiles(
-                        new ProfileDrawerItem().withName(allBanksnames[0]).withNameShown(true).withEmail("").withIcon(getResources().getDrawable(R.drawable.amana)),
-                        new ProfileDrawerItem().withName(allBanksnames[1]).withNameShown(true).withEmail("").withIcon(getResources().getDrawable(R.drawable.amana)),
-                        new ProfileDrawerItem().withName(allBanksnames[2]).withNameShown(true).withEmail("").withIcon(getResources().getDrawable(R.drawable.amana)),
-                        new ProfileDrawerItem().withName(allBanksnames[3]).withNameShown(true).withEmail("").withIcon(getResources().getDrawable(R.drawable.amana)),
-                        new ProfileDrawerItem().withName(allBanksnames[4]).withNameShown(true).withEmail("").withIcon(getResources().getDrawable(R.drawable.amana)),
-                        new ProfileDrawerItem().withName(allBanksnames[5]).withNameShown(true).withEmail("").withIcon(getResources().getDrawable(R.drawable.amana)),
-                        new ProfileDrawerItem().withName(allBanksnames[6]).withNameShown(true).withEmail("").withIcon(getResources().getDrawable(R.drawable.amana)),
-                        new ProfileDrawerItem().withName(allBanksnames[7]).withNameShown(true).withEmail("").withIcon(getResources().getDrawable(R.drawable.amana)),
-                        new ProfileDrawerItem().withName(allBanksnames[8]).withNameShown(true).withEmail("").withIcon(getResources().getDrawable(R.drawable.amana)),
-                        new ProfileDrawerItem().withName(allBanksnames[9]).withNameShown(true).withEmail("").withIcon(getResources().getDrawable(R.drawable.amana)),
-                        new ProfileDrawerItem().withName(allBanksnames[10]).withNameShown(true).withEmail("").withIcon(getResources().getDrawable(R.drawable.amana)),
-                        new ProfileDrawerItem().withName(allBanksnames[11]).withNameShown(true).withEmail("").withIcon(getResources().getDrawable(R.drawable.amana)),
-                        new ProfileDrawerItem().withName(allBanksnames[12]).withNameShown(true).withEmail("").withIcon(getResources().getDrawable(R.drawable.amana)),
-                        new ProfileDrawerItem().withName(allBanksnames[13]).withNameShown(true).withEmail("").withIcon(getResources().getDrawable(R.drawable.amana)),
-                        new ProfileDrawerItem().withName(allBanksnames[14]).withNameShown(true).withEmail("").withIcon(getResources().getDrawable(R.drawable.amana)),
-                        new ProfileDrawerItem().withName(allBanksnames[15]).withNameShown(true).withEmail("").withIcon(getResources().getDrawable(R.drawable.amana)),
-                        new ProfileDrawerItem().withName(allBanksnames[16]).withNameShown(true).withEmail("").withIcon(getResources().getDrawable(R.drawable.amana)),
-                        new ProfileDrawerItem().withName(allBanksnames[17]).withNameShown(true).withEmail("").withIcon(getResources().getDrawable(R.drawable.amana)),
-                        new ProfileDrawerItem().withName(allBanksnames[18]).withNameShown(true).withEmail("").withIcon(getResources().getDrawable(R.drawable.amana)),
-                        new ProfileDrawerItem().withName(allBanksnames[19]).withNameShown(true).withEmail("").withIcon(getResources().getDrawable(R.drawable.amana)),
-                        new ProfileDrawerItem().withName(allBanksnames[20]).withNameShown(true).withEmail("").withIcon(getResources().getDrawable(R.drawable.amana))
+                        new ProfileDrawerItem().withName(Bank.allBanksnames[0]).withNameShown(true).withEmail("").withIcon(getResources().getDrawable(R.drawable.ic_bank)),
+                        new ProfileDrawerItem().withName(Bank.allBanksnames[1]).withNameShown(true).withEmail("").withIcon(getResources().getDrawable(R.drawable.ic_bank)),
+                        new ProfileDrawerItem().withName(Bank.allBanksnames[2]).withNameShown(true).withEmail("").withIcon(getResources().getDrawable(R.drawable.ic_bank)),
+                        new ProfileDrawerItem().withName(Bank.allBanksnames[3]).withNameShown(true).withEmail("").withIcon(getResources().getDrawable(R.drawable.ic_bank)),
+                        new ProfileDrawerItem().withName(Bank.allBanksnames[4]).withNameShown(true).withEmail("").withIcon(getResources().getDrawable(R.drawable.ic_bank)),
+                        new ProfileDrawerItem().withName(Bank.allBanksnames[5]).withNameShown(true).withEmail("").withIcon(getResources().getDrawable(R.drawable.ic_bank)),
+                        new ProfileDrawerItem().withName(Bank.allBanksnames[6]).withNameShown(true).withEmail("").withIcon(getResources().getDrawable(R.drawable.ic_bank)),
+                        new ProfileDrawerItem().withName(Bank.allBanksnames[7]).withNameShown(true).withEmail("").withIcon(getResources().getDrawable(R.drawable.ic_bank)),
+                        new ProfileDrawerItem().withName(Bank.allBanksnames[8]).withNameShown(true).withEmail("").withIcon(getResources().getDrawable(R.drawable.ic_bank)),
+                        new ProfileDrawerItem().withName(Bank.allBanksnames[9]).withNameShown(true).withEmail("").withIcon(getResources().getDrawable(R.drawable.ic_bank)),
+                        new ProfileDrawerItem().withName(Bank.allBanksnames[10]).withNameShown(true).withEmail("").withIcon(getResources().getDrawable(R.drawable.ic_bank)),
+                        new ProfileDrawerItem().withName(Bank.allBanksnames[11]).withNameShown(true).withEmail("").withIcon(getResources().getDrawable(R.drawable.ic_bank)),
+                        new ProfileDrawerItem().withName(Bank.allBanksnames[12]).withNameShown(true).withEmail("").withIcon(getResources().getDrawable(R.drawable.ic_bank)),
+                        new ProfileDrawerItem().withName(Bank.allBanksnames[13]).withNameShown(true).withEmail("").withIcon(getResources().getDrawable(R.drawable.ic_bank)),
+                        new ProfileDrawerItem().withName(Bank.allBanksnames[14]).withNameShown(true).withEmail("").withIcon(getResources().getDrawable(R.drawable.ic_bank)),
+                        new ProfileDrawerItem().withName(Bank.allBanksnames[15]).withNameShown(true).withEmail("").withIcon(getResources().getDrawable(R.drawable.ic_bank)),
+                        new ProfileDrawerItem().withName(Bank.allBanksnames[16]).withNameShown(true).withEmail("").withIcon(getResources().getDrawable(R.drawable.ic_bank)),
+                        new ProfileDrawerItem().withName(Bank.allBanksnames[17]).withNameShown(true).withEmail("").withIcon(getResources().getDrawable(R.drawable.ic_bank)),
+                        new ProfileDrawerItem().withName(Bank.allBanksnames[18]).withNameShown(true).withEmail("").withIcon(getResources().getDrawable(R.drawable.ic_bank)),
+                        new ProfileDrawerItem().withName(Bank.allBanksnames[19]).withNameShown(true).withEmail("").withIcon(getResources().getDrawable(R.drawable.ic_bank)),
+                        new ProfileDrawerItem().withName(Bank.allBanksnames[20]).withNameShown(true).withEmail("").withIcon(getResources().getDrawable(R.drawable.ic_bank))
                 )
                 .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
                     @Override
