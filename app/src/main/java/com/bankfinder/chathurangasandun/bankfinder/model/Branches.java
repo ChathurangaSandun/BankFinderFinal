@@ -5,6 +5,8 @@ package com.bankfinder.chathurangasandun.bankfinder.model;
  */
 public class Branches {
 
+    public static int selectedBranchID = 1;
+
     private int id;
     private String bank;
     private String name;

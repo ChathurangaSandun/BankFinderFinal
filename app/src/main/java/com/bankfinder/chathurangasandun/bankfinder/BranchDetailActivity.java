@@ -12,15 +12,34 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.bankfinder.chathurangasandun.bankfinder.model.Bank;
+import com.bankfinder.chathurangasandun.bankfinder.model.Branches;
 
 
 public class BranchDetailActivity extends AppCompatActivity {
-    public static final String EXTRA_NAME = "cheese_name";
+
+    int selectedbranchID;
+    Branches selectedBranch;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_branch_detail);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+
+            selectedbranchID = extras.getInt("SELECTEDBRANCH");
+
+        }
+
+        DatabaseOpenHelper db =new DatabaseOpenHelper(getApplicationContext());
+
+        selectedBranch = db.getMainBranch(Bank.selectedBank).get(0);
+
+
+
+
 
 
 
@@ -30,7 +49,7 @@ public class BranchDetailActivity extends AppCompatActivity {
 
         CollapsingToolbarLayout collapsingToolbar =
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-        collapsingToolbar.setTitle("name");
+        collapsingToolbar.setTitle(selectedBranch.getName());
 
         loadBackdrop();
     }

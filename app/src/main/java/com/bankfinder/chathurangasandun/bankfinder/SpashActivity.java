@@ -140,11 +140,11 @@ public class SpashActivity extends AppCompatActivity {
 
         db.truncateTable("branches");
 
-        ArrayList<Branches> branchesArrayList = accessServer();
+       /* ArrayList<Branches> branchesArrayList = accessServer();
         for (Branches b: branchesArrayList) {
             db.addBranch(b);
 
-        }
+        }*/
 
         //edit.putInt(DBVERSION,(currentVersion+1));
         //edit.commit();
@@ -165,6 +165,8 @@ public class SpashActivity extends AppCompatActivity {
         db.addBranch(new Branches(004,"Amana Bank PLC","Kattankudy",7.6836273,81.7246413,"480, Galle Road,Colombo 3","011-7756000","0800", "1500", "0900", "1500"));
 
         db.addBranch(new Branches(005,"Amana Bank PLC","Dehiwala",6.8618673,79.8615613,"28, Galle Road,Dehiwala","011-7756000","0800", "1500", "0900", "1500"));
+
+        db.addBranch(new Branches(006,"Axis Bank Ltd","Main Branch",6.8618673,79.8615613,"28, Galle Road,Dehiwala","011-7756000","0800", "1500", "0900", "1500"));
 
 
 

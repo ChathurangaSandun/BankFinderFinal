@@ -38,6 +38,8 @@ public  class Bank {
 
         public static String selectedBank = Bank.allBanksnames[0];
 
+
+
     /*public static  getImage(){
 
     }*/

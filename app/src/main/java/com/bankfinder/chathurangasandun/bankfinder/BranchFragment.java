@@ -22,6 +22,7 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bankfinder.chathurangasandun.bankfinder.model.Bank;
 import com.bankfinder.chathurangasandun.bankfinder.model.Branches;
 
 import java.util.ArrayList;
@@ -32,6 +33,8 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 public class BranchFragment extends Fragment implements SearchView.OnQueryTextListener{
+
+
 
     View view;
 
@@ -49,7 +52,7 @@ public class BranchFragment extends Fragment implements SearchView.OnQueryTextLi
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view =  inflater.inflate(R.layout.fragment_branch, container, false);
@@ -65,7 +68,7 @@ public class BranchFragment extends Fragment implements SearchView.OnQueryTextLi
 
         DatabaseOpenHelper db =new DatabaseOpenHelper(getContext());
 
-        branchesList = db.getAllBranches();
+        branchesList = db.getBankBranches(Bank.selectedBank);
 
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_branch);
@@ -110,7 +113,12 @@ public class BranchFragment extends Fragment implements SearchView.OnQueryTextLi
             public void onClick(View view, int position) {
                 Branches branches = branchesList.get(position);
                 Toast.makeText(getContext(), branches.getName() + " is selected!", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getActivity(),BranchDetailActivity.class));
+
+                Intent intent = new Intent(getActivity(), BranchDetailActivity.class);
+                intent.putExtra("SELECTEDBRANCH",branches.getId());
+                startActivity(intent);
+
+
             }
 
             @Override
