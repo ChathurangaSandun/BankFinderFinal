@@ -12,10 +12,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bankfinder.chathurangasandun.bankfinder.model.Bank;
+import com.bankfinder.chathurangasandun.bankfinder.model.Branches;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 
 /**
@@ -23,6 +27,11 @@ import java.io.Serializable;
  */
 public class HomeFragment extends Fragment {
 
+
+
+
+    TextView tvLogo;
+    private Branches mainBranch;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -39,6 +48,21 @@ public class HomeFragment extends Fragment {
 
         ImageView imageView = (ImageView)view.findViewById(R.id.ivLogo);
         imageView.setImageBitmap(RoundedImageView.getCroppedBitmap(myLogo, 250));
+
+        tvLogo = (TextView) view.findViewById(R.id.tvMainbankName);
+        tvLogo.setText(Bank.selectedBank);
+
+
+        DatabaseOpenHelper db =new DatabaseOpenHelper(getContext());
+
+        mainBranch = db.getMainBranch(Bank.selectedBank).get(0);
+
+        TextView address = (TextView) view.findViewById(R.id.tvMainBranchAddress);
+        TextView tp = (TextView) view.findViewById(R.id.tvMainBranchTP);
+        TextView email = (TextView) view.findViewById(R.id.tvMainBranchEmail);
+
+        address.setText(mainBranch.getAddress());
+        tp.setText(mainBranch.getTp());
 
 
 

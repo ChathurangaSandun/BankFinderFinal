@@ -39,10 +39,12 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
+
+
         //defualt fragment
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        BranchFragment homeFragment = new BranchFragment();
+        HomeFragment homeFragment = new HomeFragment();
         fragmentTransaction.replace(R.id.container, homeFragment);
         fragmentTransaction.commit();
 
@@ -82,6 +84,9 @@ public class HomeActivity extends AppCompatActivity {
 
                         Log.d("profile", profile.getName().toString());
                         String profileName = profile.getName().toString();
+
+                        Bank.selectedBank = profileName;
+
 
                         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                         HomeFragment homeFragment = new HomeFragment();

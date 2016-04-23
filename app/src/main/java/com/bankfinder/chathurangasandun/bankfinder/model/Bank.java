@@ -5,7 +5,7 @@ package com.bankfinder.chathurangasandun.bankfinder.model;
  */
 public  class Bank {
 
-    public static String selectedBank = Bank.allBanksnames[0];
+
 
 
     public static  String [] allBanksnames = {
@@ -35,6 +35,8 @@ public  class Bank {
             "HSBC",
             "Union Bank of Colombo PLC"
     };
+
+        public static String selectedBank = Bank.allBanksnames[0];
 
     /*public static  getImage(){
 

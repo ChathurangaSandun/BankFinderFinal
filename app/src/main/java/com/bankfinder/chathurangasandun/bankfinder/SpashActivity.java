@@ -154,13 +154,18 @@ public class SpashActivity extends AppCompatActivity {
 
 
 
-        db.addBranch(new Branches(1, "Amana", "horana", 1.25, 5.25, "horana", "0718256773", "0800", "1500", "0900", "1500"));
-        db.addBranch(new Branches(2, "Amana", "colombo", 3.25, 5.25, "horana", "0718256773", "0800", "1500", "0900", "1500"));
-        db.addBranch(new Branches(3, "Amana", "piliyandala", 5.25, 5.25, "horana", "0718256773", "0800", "1500", "0900", "1500"));
-        db.addBranch(new Branches(4, "Amana", "panadura", 9.25, 5.25, "horana", "0718256773", "0800", "1500", "0900", "1500"));
-        db.addBranch(new Branches(5, "Amana", "pilimathalawa", 7.25, 5.25, "horana", "0718256773", "0800", "1500", "0900", "1500"));
-        db.addBranch(new Branches(6, "Amana", "bandaragama", 6.25, 5.25, "horana", "0718256773", "0800", "1500", "0900", "1500"));
-        db.addBranch(new Branches(7, "Amana", "batuwita", 6.25, 5.25, "horana", "0718256773", "0800", "1500", "0900", "1500"));
+
+
+
+        db.addBranch(new Branches(001,"Amana Bank PLC","Main Branch",6.905825,79.851470,"480, Galle Road,Colombo 3","011-7756000","0800", "1500", "0900", "1500"));
+
+        db.addBranch(new Branches(002,"Amana Bank PLC","Pettah",6.937672,79.851277,"129, Main Street, Colombo 11","011-7756000","0800", "1500", "0900", "1500"));
+        db.addBranch(new Branches(003,"Amana Bank PLC","Kandy",7.2955357,80.6355777,"480, Galle Road,Colombo 3","011-7756000","0800", "1500", "0900", "1500"));
+
+        db.addBranch(new Branches(004,"Amana Bank PLC","Kattankudy",7.6836273,81.7246413,"480, Galle Road,Colombo 3","011-7756000","0800", "1500", "0900", "1500"));
+
+        db.addBranch(new Branches(005,"Amana Bank PLC","Dehiwala",6.8618673,79.8615613,"28, Galle Road,Dehiwala","011-7756000","0800", "1500", "0900", "1500"));
+
 
 
 
