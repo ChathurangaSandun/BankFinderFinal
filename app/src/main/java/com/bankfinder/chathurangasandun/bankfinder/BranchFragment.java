@@ -71,6 +71,7 @@ public class BranchFragment extends Fragment implements SearchView.OnQueryTextLi
         branchesList = db.getBankBranches(Bank.selectedBank);
 
 
+
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_branch);
         SearchView searchBranch = (SearchView) view.findViewById(R.id.search);
 
@@ -111,11 +112,16 @@ public class BranchFragment extends Fragment implements SearchView.OnQueryTextLi
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getContext(), recyclerView, new ClickListener() {
             @Override
             public void onClick(View view, int position) {
+                Log.d("branch",branchesList.get(position).getName());
+
+
+
                 Branches branches = branchesList.get(position);
                 Toast.makeText(getContext(), branches.getName() + " is selected!", Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(getActivity(), BranchDetailActivity.class);
                 intent.putExtra("SELECTEDBRANCH",branches.getId());
+
                 startActivity(intent);
 
 

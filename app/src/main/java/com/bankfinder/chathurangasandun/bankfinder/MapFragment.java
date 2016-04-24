@@ -13,6 +13,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bankfinder.chathurangasandun.bankfinder.model.Bank;
+import com.bankfinder.chathurangasandun.bankfinder.model.Branches;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -54,6 +57,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback,View.OnC
     TextView tvSlideupdwn;
 
     SlidingUpPanelLayout slidingLayout;
+    private ArrayList<Branches> branchesList;
 
     public MapFragment() {
         // Required empty public constructor
@@ -81,6 +85,13 @@ public class MapFragment extends Fragment implements OnMapReadyCallback,View.OnC
         slidingLayout.setShadowHeight(10);
         slidingLayout.setPanelSlideListener(onSlideListener());
 
+        DatabaseOpenHelper db =new DatabaseOpenHelper(getContext());
+        branchesList = db.getBankBranches(Bank.selectedBank);
+
+
+
+
+
 
         return v;
     }
@@ -91,8 +102,19 @@ public class MapFragment extends Fragment implements OnMapReadyCallback,View.OnC
         mMap = googleMap;
         mMap.setMyLocationEnabled(true);
         mMap.setOnMyLocationChangeListener(myLocationChangeListener);
-        //setMarkers();
+        setMarkers();
         //getNearestBranch();
+
+
+    }
+
+    private void setMarkers() {
+
+        for (Branches branch:branchesList){
+            LatLng branchLocaiton = new LatLng(branch.getLatitude(), branch.getLongtitude());
+            mMap.addMarker(new MarkerOptions().position(branchLocaiton).title(branch.getName()));
+        }
+
     }
 
     private GoogleMap.OnMyLocationChangeListener myLocationChangeListener = new GoogleMap.OnMyLocationChangeListener() {
@@ -114,7 +136,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback,View.OnC
                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_man))
                     .title("My Locaiton"));
             if(mMap != null){
-                //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, 12.0f));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, 12.0f));
             }
         }
     };

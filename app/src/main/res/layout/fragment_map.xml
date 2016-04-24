@@ -54,7 +54,7 @@
                 android:text="Slide Up"
                 android:id="@+id/tvSlideupdown"
                 android:background="@color/materialize_primary_dark"
-                android:textColor="#ffffff"
+                android:textColor="#EEEEEE"
                 android:textAlignment="center"
                 android:gravity="center"
                 />

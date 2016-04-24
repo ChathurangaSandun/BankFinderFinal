@@ -43,7 +43,7 @@ public class SpashActivity extends AppCompatActivity {
      * user interaction before hiding the system UI.
      */
     private static final int AUTO_HIDE_DELAY_MILLIS = 3000;
-    private static int SPLASH_TIME_OUT = 5000;
+    private static int SPLASH_TIME_OUT = 1000;
 
     /**
      * Some older devices needs a small delay between UI widget updates

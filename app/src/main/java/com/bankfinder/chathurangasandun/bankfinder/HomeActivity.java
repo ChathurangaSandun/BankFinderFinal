@@ -88,10 +88,10 @@ public class HomeActivity extends AppCompatActivity {
                         Bank.selectedBank = profileName;
 
 
-                        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                        /*FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                         HomeFragment homeFragment = new HomeFragment();
                         fragmentTransaction.replace(R.id.container, homeFragment);
-                        fragmentTransaction.commit();
+                        fragmentTransaction.commit();*/
 
 
                         return false;

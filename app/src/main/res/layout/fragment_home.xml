@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     tools:context="com.bankfinder.chathurangasandun.bankfinder.HomeFragment"
     android:gravity="start|fill_vertical"
-    android:background="#FAFAFA">
+    android:background="#EEEEEE">
 
 
     <ImageView
