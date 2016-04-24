@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.bankfinder.chathurangasandun.bankfinder"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -16,6 +16,12 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+}
+
+repositories {
+    maven {
+        url "http://dl.bintray.com/glomadrian/maven"
     }
 }
 
@@ -39,6 +45,8 @@ dependencies {
 
 
     compile 'com.android.support:cardview-v7:23.1.1'
+
+    compile 'com.github.glomadrian:MaterialAnimatedSwitch:1.1@aar'
 
 
 
