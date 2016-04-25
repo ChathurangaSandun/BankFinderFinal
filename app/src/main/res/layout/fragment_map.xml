@@ -32,6 +32,31 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentBottom="true" />
 
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:src="@drawable/ic_bank"
+                android:tint="#ffff"
+                android:layout_above="@+id/fab2"
+                android:layout_alignLeft="@+id/fab2"
+                android:layout_alignStart="@+id/fab2"
+                style="?attr/selectableItemBackgroundBorderless"/>
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:src="@drawable/ic_atm"
+                android:tint="#ffff"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginBottom="54dp"
+                style="?attr/selectableItemBackgroundBorderless"/>
+
 
 
 
@@ -69,28 +94,44 @@
                 <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/card_margin"
+                    android:layout_margin="@dimen/map_card_margin"
                     android:background="#ffff">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Active Pins"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Widget.PopupMenu.Small"
+                        android:paddingBottom="7dp"
+                        android:layout_margin="10dp"/>
 
                     <LinearLayout
                         style="@style/Widget.CardContent"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
+                        android:layout_marginTop="20dp"
                         >
 
+
+
                         <LinearLayout
-                            style="@style/Widget.CardContent"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
+                            android:layout_weight="50"
                             >
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Active Branches"
-                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Widget.PopupMenu.Small" />
+                                android:text="Branch"
+                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Widget.PopupMenu.Small"
+                                android:layout_weight="75"
+                                android:layout_margin="0dp"
+                                android:layout_marginLeft="0dp"
+                                android:layout_marginTop="0dp"
+                                android:layout_marginRight="0dp"
+                                android:layout_marginBottom="0dp" />
 
 
 
@@ -104,34 +145,31 @@
                                 app:ball_release_color="@color/md_deep_orange_500"
                                 app:ball_press_color="@color/md_white_1000"
                                 app:icon_release="@drawable/ic_bank"
-                                app:icon_press="@drawable/ic_home" />
+                                app:icon_press="@drawable/ic_home"
+                                android:layout_weight="25"/>
 
                         </LinearLayout>
 
-                        <View
-                            android:layout_width="1dp"
-                            android:layout_height="match_parent"
-                            android:background="#000"
-                            />
-
                         <LinearLayout
-                            style="@style/Widget.CardContent"
+
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
+                            android:layout_weight="50"
                             >
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Active Branches"
-                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Widget.PopupMenu.Small" />
+                                android:text="ATM"
+                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Widget.PopupMenu.Small"
+                                android:layout_weight="75"/>
 
 
 
 
                             <com.github.glomadrian.materialanimatedswitch.MaterialAnimatedSwitch
-                                android:id="@+id/pin2"
+                                android:id="@+id/pinn"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 app:base_release_color="@color/md_deep_orange_900"
@@ -139,14 +177,10 @@
                                 app:ball_release_color="@color/md_deep_orange_500"
                                 app:ball_press_color="@color/md_white_1000"
                                 app:icon_release="@drawable/ic_bank"
-                                app:icon_press="@drawable/ic_home" />
+                                app:icon_press="@drawable/ic_home"
+                                android:layout_weight="25"/>
 
                         </LinearLayout>
-
-
-
-
-
                     </LinearLayout>
 
                 </android.support.v7.widget.CardView>
@@ -156,7 +190,89 @@
                 <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/card_margin"
+                    android:layout_margin="@dimen/map_card_margin"
+                    android:background="#ffff">
+
+                    <LinearLayout
+                        style="@style/Widget.CardContent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Nearest Branch"
+                            android:layout_marginBottom="10dp"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Widget.PopupMenu.Small"
+                            />
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_weight="50"
+                                >
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="address"
+                                    android:id="@+id/tvAdressNearestBranch"
+                                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Widget.PopupMenu.Small"
+                                    />
+
+
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_weight="50">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Telephone Number"
+                                    android:id="@+id/tvTpNearestBranch"
+                                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Widget.PopupMenu.Small"
+                                    android:layout_weight="25"
+                                    />
+
+                                <android.support.design.widget.FloatingActionButton
+                                    android:id="@+id/fab3"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:layout_gravity="bottom|end"
+                                    android:src="@android:drawable/ic_menu_call"
+                                    android:tint="#ffff"
+                                    style="?attr/selectableItemBackgroundBorderless"
+                                    android:layout_weight="75"/>
+
+
+
+
+                            </LinearLayout>
+                            </LinearLayout>
+
+
+
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/map_card_margin"
                     android:background="#ffff">
 
                     <LinearLayout
@@ -165,25 +281,24 @@
                         android:layout_height="wrap_content">
 
                         <TextView
+                            android:layout_marginBottom="10dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Branch Address"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+                            android:text="Nearest ATM"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Widget.PopupMenu.Small"
+                            />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:id="@+id/ghjfg"/>
+                            android:text="ATM address"
+                            android:id="@+id/atmAddress"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Widget.PopupMenu.Small"
+                            />
 
                     </LinearLayout>
 
                 </android.support.v7.widget.CardView>
-
-
-
-
-
-
 
             </LinearLayout>
 

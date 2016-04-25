@@ -36,6 +36,35 @@ public  class Bank {
             "Union Bank of Colombo PLC"
     };
 
+        public static String []allEmails={
+                "someone@gmail.com",
+                "someone@gmail.com",
+                "someone@gmail.com",
+                "someone@gmail.com",
+                "someone@gmail.com",
+                "someone@gmail.com",
+                "someone@gmail.com",
+                "someone@gmail.com",
+                "someone@gmail.com",
+                "someone@gmail.com",
+                "someone@gmail.com",
+                "someone@gmail.com",
+                "someone@gmail.com",
+                "someone@gmail.com",
+                "someone@gmail.com",
+                "someone@gmail.com",
+                "someone@gmail.com",
+                "someone@gmail.com",
+                "someone@gmail.com",
+                "someone@gmail.com",
+                "someone@gmail.com",
+                "someone@gmail.com",
+                "someone@gmail.com",
+                "someone@gmail.com",
+                "someone@gmail.com"
+
+        };
+
         public static String selectedBank = Bank.allBanksnames[0];
 
 
