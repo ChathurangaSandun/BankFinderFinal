@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BankFinder</string>
+    <string name="app_name">Bank Finder - Sri Lanka</string>
     <string name="action_settings">Settings</string>
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -10,4 +10,5 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">BANK \n FINDER</string>
     <string name="title_activity_branch_detail">BranchDetailActivity</string>
+    <string name="title_activity_my_profile">MyProfile</string>
 </resources>

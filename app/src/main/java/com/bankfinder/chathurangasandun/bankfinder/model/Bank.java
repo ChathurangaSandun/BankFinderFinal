@@ -37,10 +37,10 @@ public  class Bank {
     };
 
         public static String []allEmails={
-                "someone@gmail.com",
-                "someone@gmail.com",
-                "someone@gmail.com",
-                "someone@gmail.com",
+                "AmanaBank@gmail.com",
+                "axisbank@sdafds.com",
+                "boc@gmail.com",
+                "Cargills@gmail.com",
                 "someone@gmail.com",
                 "someone@gmail.com",
                 "someone@gmail.com",
@@ -66,6 +66,7 @@ public  class Bank {
         };
 
         public static String selectedBank = Bank.allBanksnames[0];
+        public static String selectedBankEmail = Bank.allEmails[0];
 
 
 

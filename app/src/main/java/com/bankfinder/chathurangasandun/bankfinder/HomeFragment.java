@@ -65,6 +65,25 @@ public class HomeFragment extends Fragment {
         tp.setText(mainBranch.getTp());
 
 
+        int i= 0;
+        for (String s:Bank.allBanksnames) {
+
+            Log.d("email",s);
+
+            if(s.equals(Bank.selectedBank)){
+                break;
+            }else{
+                i++;
+            }
+        }
+
+        Log.d("email",String.valueOf(i));
+
+        email.setText(Bank.allEmails[i]);
+
+
+
+
 
         return view;
     }

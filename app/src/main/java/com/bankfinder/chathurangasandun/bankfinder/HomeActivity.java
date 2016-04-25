@@ -1,7 +1,14 @@
 package com.bankfinder.chathurangasandun.bankfinder;
 
+
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -36,6 +43,20 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        if(!isConnected(getApplicationContext())) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("No Internet Connection");
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    // User clicked OK button
+                }
+            });
+
+
+            builder.show();
+        }
+
 
 
 
@@ -88,10 +109,11 @@ public class HomeActivity extends AppCompatActivity {
                         Bank.selectedBank = profileName;
 
 
-                        /*FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+
+                        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                         HomeFragment homeFragment = new HomeFragment();
                         fragmentTransaction.replace(R.id.container, homeFragment);
-                        fragmentTransaction.commit();*/
+                        fragmentTransaction.commit();
 
 
                         return false;
@@ -141,8 +163,8 @@ public class HomeActivity extends AppCompatActivity {
                                 fragmentTransaction.replace(R.id.container, branchFragment);
                             }else if ("ATM Finder".equals(selectedItem)) {
                                 Log.d(LOG_TAG, "ATM Finder");
-                                HomeFragment homeFragment = new HomeFragment();
-                                fragmentTransaction.replace(R.id.container, homeFragment);
+                                ATMFragment atmFragment = new ATMFragment();
+                                fragmentTransaction.replace(R.id.container, atmFragment);
                             } else if ("Nearest ATM and Branch".equals(selectedItem)) {
                                 Log.d(LOG_TAG, "Nearest ATM and Branch");
                                 MapFragment mapFragment = new MapFragment();
@@ -151,6 +173,8 @@ public class HomeActivity extends AppCompatActivity {
                                 Log.d(LOG_TAG, "Check Update");
                             }else if("Developer".equals(selectedItem)){
                                 Log.d(LOG_TAG, "Developer");
+                                Intent i = new Intent(getApplication(),MyProfile.class);
+                                startActivity(i);
                             }else if("GitHub".equals(selectedItem)){
                                 Log.d(LOG_TAG, "GitHub");
                             }else if("Official Web Site".equals(selectedItem)){
@@ -170,7 +194,7 @@ public class HomeActivity extends AppCompatActivity {
         drawer.addStickyFooterItem(new PrimaryDrawerItem().withName("Developer").withIcon(getResources().getDrawable(R.drawable.developer)));
 
         drawer.addStickyFooterItem(new DividerDrawerItem());
-        drawer.addStickyFooterItem(new PrimaryDrawerItem().withName("GitHub").withIcon(getResources().getDrawable(R.drawable.ic_github)));
+        //drawer.addStickyFooterItem(new PrimaryDrawerItem().withName("GitHub").withIcon(getResources().getDrawable(R.drawable.ic_github)));
 
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
@@ -200,4 +224,20 @@ public class HomeActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public boolean isConnected(Context context) {
+
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netinfo = cm.getActiveNetworkInfo();
+
+        if (netinfo != null && netinfo.isConnectedOrConnecting()) {
+            android.net.NetworkInfo wifi = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+            android.net.NetworkInfo mobile = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+
+            if((mobile != null && mobile.isConnectedOrConnecting()) || (wifi != null && wifi.isConnectedOrConnecting())) return true;
+            else return false;
+        } else return false;
+    }
+
+
 }
